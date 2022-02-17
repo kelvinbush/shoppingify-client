@@ -1,0 +1,34 @@
+:root {
+  --color-grey-1: #bdbdbd;
+  --color-orange-1: #f9a109;
+  --color-red-1: #eb5757;
+  --color-background-1: #fafafe;
+  --color-background-2: #fff0de;
+  --color-blue-1: #56ccf2;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 1 rem = 10px
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  line-height: 2rem;
+  color: #000;
+  background-color: var(--color-background-1);
+  min-height: 100vh;
+}
