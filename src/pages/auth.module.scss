@@ -30,6 +30,10 @@
       border: 1px solid #E0E3E5;
       margin-bottom: 1.6rem;
       display: block;
+
+      &:focus{
+        outline: none;
+      }
     }
 
     & button {

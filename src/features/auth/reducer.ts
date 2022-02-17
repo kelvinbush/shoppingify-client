@@ -1,4 +1,4 @@
-import { createReducer } from "@reduxjs/toolkit/src/createReducer";
+import { createReducer } from "@reduxjs/toolkit";
 import { getJwtTokens } from "./actions";
 
 export type AuthState = {
