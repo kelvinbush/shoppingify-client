@@ -2,7 +2,7 @@ import styles from "./auth.module.scss";
 import { useRouter } from "next/router";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { authSelector, getJwtTokens, UserLogin } from "../features/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Spinner from "../components/spinner/spinner";
 
 export default function Login() {
@@ -12,6 +12,16 @@ export default function Login() {
   const router = useRouter();
   const { data, pending, error } = useAppSelector(authSelector);
 
+  async function route() {
+    await router.push("/shop/shop");
+  }
+
+  useEffect(() => {
+    if (data.accessToken.length > 1) {
+      route().then((r) => r);
+    }
+  });
+
   async function submitLogin() {
     const user: UserLogin = {
       email,
@@ -19,9 +29,6 @@ export default function Login() {
     };
     try {
       await dispatch(getJwtTokens(user));
-      if (data.accessToken.length > 1) {
-        await router.push("/shop/shop");
-      }
     } catch (e) {
       console.log(e);
     }

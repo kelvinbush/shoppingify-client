@@ -1,16 +1,14 @@
-import { getShopItems, ShopResponse } from "./actions";
+import { getShopItems, ShopItem } from "./actions";
 import { createReducer } from "@reduxjs/toolkit";
 
 export type ShopItemState = {
-  data2: { results: ShopResponse[] };
+  data2: ShopItem[];
   pending: boolean;
   error: boolean;
 };
 
 const initialState: ShopItemState = {
-  data2: {
-    results: [],
-  },
+  data2: [],
   pending: false,
   error: false,
 };

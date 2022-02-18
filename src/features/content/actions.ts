@@ -10,8 +10,7 @@ export const getShopItems = createAsyncThunk(
         "x-refresh": token.refreshToken,
       },
     });
-    console.log(response.data);
-    return response.data;
+    return response.data.list;
   }
 );
 
@@ -38,9 +37,12 @@ export interface Item {
   category: Category;
 }
 
-export interface ShopResponse {
+export interface ShopItem {
   id: string;
-  item: Item;
+  name: string;
+  note: string;
+  imageUrl: string;
+  category: string;
 }
 
 export interface Category {
