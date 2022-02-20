@@ -1,4 +1,4 @@
-import { ActiveListItem } from '../../features/added-list/actions';
+import { ActiveListItem } from '../../features/added-list';
 import styles from './shopping-list-item.module.scss';
 import { useState } from 'react';
 
