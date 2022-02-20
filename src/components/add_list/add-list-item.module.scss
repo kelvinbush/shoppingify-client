@@ -1,0 +1,62 @@
+.my__items {
+  width: 100%;
+  margin: 0 auto;
+
+  &__list {
+    width: 90%;
+    margin: 0 auto;
+    flex-grow: 1;
+    overflow-y: auto;
+    height: 35rem;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: rgba(255, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--color-grey-1);
+      border-radius: 10px;
+    }
+
+    &__header {
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      font-size: 1.4rem;
+      line-height: 1.7rem;
+      color: #828282
+    }
+  }
+}
+
+
+.name__header {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+  align-items: baseline;
+  position: sticky;
+  top: 14rem;
+  align-self: flex-start;
+
+  &__name__icon {
+    width: 1.7rem;
+    height: 1.7rem;
+    cursor: pointer;
+  }
+
+  h3 {
+    font-size: 2rem;
+    line-height: 3rem;
+    font-weight: 700;
+    color: #34333A;
+  }
+}
+

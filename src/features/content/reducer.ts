@@ -1,14 +1,14 @@
-import { getShopItems, ShopItem } from "./actions";
-import { createReducer } from "@reduxjs/toolkit";
+import { getShopItems, ShopItem } from './actions';
+import { createReducer } from '@reduxjs/toolkit';
 
 export type ShopItemState = {
-  data2: ShopItem[];
+  shopItemList: ShopItem[];
   pending: boolean;
   error: boolean;
 };
 
 const initialState: ShopItemState = {
-  data2: [],
+  shopItemList: [],
   pending: false,
   error: false,
 };
@@ -18,10 +18,13 @@ export const shopListReducer = createReducer(initialState, (builder) => {
     .addCase(getShopItems.pending, (state) => {
       state.pending = true;
     })
-    .addCase(getShopItems.fulfilled, (state, { payload }) => {
-      state.pending = false;
-      state.data2 = payload;
-    })
+    .addCase(
+      getShopItems.fulfilled,
+      (state, { payload }: { payload: ShopItem[] }) => {
+        state.pending = false;
+        state.shopItemList = payload;
+      }
+    )
     .addCase(getShopItems.rejected, (state) => {
       state.pending = false;
       state.error = true;

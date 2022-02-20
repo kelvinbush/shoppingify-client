@@ -1,11 +1,13 @@
-import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
-import authReducer from "../features/auth/reducer";
-import shopListReducer from "../features/content/reducer";
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
+import authReducer from '../features/auth/reducer';
+import shopListReducer from '../features/content/reducer';
+import activeListReducer from '../features/added-list/reducer';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     shopList: shopListReducer,
+    activeList: activeListReducer,
   },
 });
 export type AppDispatch = typeof store.dispatch;

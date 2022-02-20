@@ -1,15 +1,48 @@
-import Image from "next/image";
-import styles from "./item_section.module.scss";
-import AddListItem from "../../components/list-item";
+import styles from './item_section.module.scss';
+import AddListItem from '../../components/add_list/list-item';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { authSelector } from '../../features/auth';
+import { activeListSelector } from '../../features/added-list/selectors';
+import { useCallback, useEffect, useState } from 'react';
+import { getActiveList } from '../../features/added-list/actions';
+import Spinner from '../../components/spinner/spinner';
+import { getCategories } from '../../util/types';
 
 export default function ItemSection() {
+  const { data } = useAppSelector(authSelector);
+  const [edit, setEdit] = useState(false);
+  const dispatch = useAppDispatch();
+  const { activeList, pending, error } = useAppSelector(activeListSelector);
+
+  const initialFetch = useCallback(() => {
+    const token = {
+      accessToken: data.accessToken,
+      refreshToken: data.refreshToken,
+    };
+    dispatch(getActiveList(token));
+  }, [dispatch]);
+
+  useEffect(() => {
+    initialFetch();
+  }, [initialFetch]);
+
+  const categories = getCategories(activeList.list);
+
+  const isPending = <Spinner />;
+  const content = error ? (
+    <p>Something Went Wrong</p>
+  ) : (
+    <>
+      <AddListItem activeList={activeList} categories={categories} />
+    </>
+  );
   return (
     <section className={styles.details}>
       <div>
         <div className={styles.add}>
           <img
             className={styles.add__source}
-            src={"/img/source.svg"}
+            src={'/img/source.svg'}
             alt="Source image"
           />
           <div className={styles.add__container}>
@@ -17,18 +50,21 @@ export default function ItemSection() {
             <button>Add item</button>
           </div>
         </div>
-        <div className={styles.list__header}>
-          <h3>Shopping list</h3>
-          <svg className={styles.list__header__icon}>
-            <use xlinkHref={"/img/sprite.svg#icon-edit-pencil"} />
-          </svg>
+        {pending ? isPending : content}
+      </div>
+      {edit ? (
+        <div className={styles.details__actions}>
+          <input placeholder="Enter a name" type="text" />
+          <button className={styles.details__actions__save}>Save</button>
         </div>
-        <AddListItem />
-      </div>
-      <div className={styles.details__actions}>
-        <input placeholder="Enter a name" type="text" />
-        <button>Save</button>
-      </div>
+      ) : (
+        <div className={styles.details__actions}>
+          <button className={styles.details__actions__cancel}>cancel</button>
+          <button className={styles.details__actions__complete}>
+            Complete
+          </button>
+        </div>
+      )}
     </section>
   );
 }
