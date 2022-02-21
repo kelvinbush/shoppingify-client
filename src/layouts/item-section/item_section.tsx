@@ -15,11 +15,7 @@ export default function ItemSection() {
   const { activeList, pending, error } = useAppSelector(activeListSelector);
 
   const initialFetch = useCallback(() => {
-    const token = {
-      accessToken: data.accessToken,
-      refreshToken: data.refreshToken,
-    };
-    dispatch(getActiveList(token));
+    dispatch(getActiveList(data));
   }, [dispatch]);
 
   useEffect(() => {
