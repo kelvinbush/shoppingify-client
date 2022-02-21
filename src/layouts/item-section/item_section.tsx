@@ -2,15 +2,16 @@ import styles from './item_section.module.scss';
 import AddListItem from '../../components/add_list/list-item';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { authSelector } from '../../features/auth';
-import { activeListSelector } from '../../features/added-list';
+import { activeListSelector, getActiveList } from '../../features/added-list';
 import { useCallback, useEffect, useState } from 'react';
-import { getActiveList } from '../../features/added-list';
 import Spinner from '../../components/spinner/spinner';
 import { getCategories } from '../../util/types';
+import { updateCurrentListName } from '../../util/api';
 
 export default function ItemSection() {
   const { data } = useAppSelector(authSelector);
   const [edit, setEdit] = useState(false);
+  const [listName, setListName] = useState('');
   const dispatch = useAppDispatch();
   const { activeList, pending, error } = useAppSelector(activeListSelector);
 
@@ -21,6 +22,11 @@ export default function ItemSection() {
   useEffect(() => {
     initialFetch();
   }, [initialFetch]);
+
+  async function submitListName() {
+    await updateCurrentListName({ name: listName, id: '22' }, data);
+    dispatch(getActiveList(data));
+  }
 
   const categories = getCategories(activeList.list);
 
@@ -55,8 +61,18 @@ export default function ItemSection() {
       </div>
       {edit ? (
         <div className={styles.details__actions}>
-          <input placeholder="Enter a name" type="text" />
-          <button className={styles.details__actions__save}>Save</button>
+          <input
+            placeholder="Enter a name"
+            type="text"
+            value={listName}
+            onChange={(event) => setListName(event.target.value)}
+          />
+          <button
+            onClick={() => submitListName()}
+            className={styles.details__actions__save}
+          >
+            Save
+          </button>
         </div>
       ) : (
         <div className={styles.details__actions}>

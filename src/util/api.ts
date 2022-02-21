@@ -83,6 +83,30 @@ export async function deleteActiveItem(
   }
 }
 
+export async function updateCurrentListName(input: EditName, token: AuthToken) {
+  try {
+    console.log(input);
+    const response = await axios.patch(
+      'http://localhost:1500/api/active-name',
+      input,
+      {
+        headers: {
+          Authorization: token.accessToken,
+          'x-refresh': token.refreshToken,
+        },
+      }
+    );
+    return response.data.complete;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export interface EditName {
+  name: string;
+  id: string;
+}
+
 export interface SelectItem {
   itemId: string;
   isSelected: boolean;

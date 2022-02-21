@@ -22,7 +22,8 @@ export const activeListReducer = createReducer(initialState, (builder) => {
       getActiveList.fulfilled,
       (state, { payload }: { payload: ActiveItemResponse }) => {
         state.pending = false;
-        state.activeList = payload;
+        state.activeList.list = payload.list;
+        state.activeList.name = payload.name;
       }
     )
     .addCase(getActiveList.rejected, (state) => {
