@@ -1,5 +1,6 @@
 import { AuthToken } from './types';
 import axios from 'axios';
+import { ActiveListItem } from '../features/added-list';
 
 export async function toggleSelectItem(input: SelectItem, token: AuthToken) {
   try {
@@ -26,6 +27,48 @@ export async function addToActiveList(
   try {
     const response = await axios.post(
       'http://localhost:1500/api/active-add',
+      input,
+      {
+        headers: {
+          Authorization: token.accessToken,
+          'x-refresh': token.refreshToken,
+        },
+      }
+    );
+    return response.data.complete;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export async function updateQuantity(
+  input: ActiveListItemInput,
+  token: AuthToken
+) {
+  try {
+    const response = await axios.patch(
+      'http://localhost:1500/api/active-add',
+      input,
+      {
+        headers: {
+          Authorization: token.accessToken,
+          'x-refresh': token.refreshToken,
+        },
+      }
+    );
+    return response.data.complete;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export async function deleteActiveItem(
+  input: ActiveListItem,
+  token: AuthToken
+) {
+  try {
+    const response = await axios.patch(
+      'http://localhost:1500/api/active-del',
       input,
       {
         headers: {

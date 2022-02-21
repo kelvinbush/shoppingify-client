@@ -21,11 +21,18 @@ export interface ActiveItemResponse {
   list: ActiveListItem[];
 }
 
+/**
+ *  id: string;
+ *   name: string;
+ *   category: string;
+ *   quantity: number;
+ *   isSelected: boolean;
+ *   activeId:string*/
 export interface ActiveListItem {
   id: string;
   name: string;
   category: string;
   quantity: number;
   isSelected: boolean;
-  activeId:string
+  activeId: string;
 }
