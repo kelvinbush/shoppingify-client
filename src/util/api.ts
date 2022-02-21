@@ -4,7 +4,7 @@ import axios from 'axios';
 export async function toggleSelectItem(input: SelectItem, token: AuthToken) {
   try {
     const response = await axios.patch(
-      'http://localhost:1500/api/sessions',
+      'http://localhost:1500/api/active',
       input,
       {
         headers: {
@@ -13,7 +13,6 @@ export async function toggleSelectItem(input: SelectItem, token: AuthToken) {
         },
       }
     );
-    console.log(response);
     return response.data.complete;
   } catch (e) {
     console.log(e);
