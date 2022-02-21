@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { authSelector } from '../../features/auth';
 import { activeListSelector } from '../../features/added-list/selectors';
 import { useCallback, useEffect, useState } from 'react';
-import { getActiveList } from '../../features/added-list/actions';
+import { getActiveList } from '../../features/added-list';
 import Spinner from '../../components/spinner/spinner';
 import { getCategories } from '../../util/types';
 
@@ -33,7 +33,12 @@ export default function ItemSection() {
     <p>Something Went Wrong</p>
   ) : (
     <>
-      <AddListItem activeList={activeList} categories={categories} />
+      <AddListItem
+        activeList={activeList}
+        categories={categories}
+        toggleEdit={async () => setEdit(!edit)}
+        isEditing={edit}
+      />
     </>
   );
   return (
@@ -52,7 +57,7 @@ export default function ItemSection() {
         </div>
         {pending ? isPending : content}
       </div>
-      {edit ? (
+      {!edit ? (
         <div className={styles.details__actions}>
           <input placeholder="Enter a name" type="text" />
           <button className={styles.details__actions__save}>Save</button>

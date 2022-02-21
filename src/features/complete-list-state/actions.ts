@@ -1,4 +1,4 @@
-import { createAction } from '@reduxjs/toolkit/src/createAction';
+import { createAction } from '@reduxjs/toolkit';
 
 export const addItemToComplete = createAction<CompleteItem>('complete/add');
 export const removeItemFromComplete = createAction<string>('complete/remove');

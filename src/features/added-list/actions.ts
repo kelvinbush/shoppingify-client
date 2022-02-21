@@ -26,4 +26,6 @@ export interface ActiveListItem {
   name: string;
   category: string;
   quantity: number;
+  isSelected: boolean;
+  activeId:string
 }
