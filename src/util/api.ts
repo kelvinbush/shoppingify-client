@@ -19,7 +19,33 @@ export async function toggleSelectItem(input: SelectItem, token: AuthToken) {
   }
 }
 
+export async function addToActiveList(
+  input: ActiveListItemInput,
+  token: AuthToken
+) {
+  try {
+    const response = await axios.post(
+      'http://localhost:1500/api/active-add',
+      input,
+      {
+        headers: {
+          Authorization: token.accessToken,
+          'x-refresh': token.refreshToken,
+        },
+      }
+    );
+    return response.data.complete;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export interface SelectItem {
   itemId: string;
   isSelected: boolean;
+}
+
+export interface ActiveListItemInput {
+  itemId: string;
+  quantity: number;
 }

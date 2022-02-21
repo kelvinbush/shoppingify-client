@@ -2,7 +2,7 @@ import styles from './item_section.module.scss';
 import AddListItem from '../../components/add_list/list-item';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { authSelector } from '../../features/auth';
-import { activeListSelector } from '../../features/added-list/selectors';
+import { activeListSelector } from '../../features/added-list';
 import { useCallback, useEffect, useState } from 'react';
 import { getActiveList } from '../../features/added-list';
 import Spinner from '../../components/spinner/spinner';
@@ -53,7 +53,7 @@ export default function ItemSection() {
         </div>
         {pending ? isPending : content}
       </div>
-      {!edit ? (
+      {edit ? (
         <div className={styles.details__actions}>
           <input placeholder="Enter a name" type="text" />
           <button className={styles.details__actions__save}>Save</button>

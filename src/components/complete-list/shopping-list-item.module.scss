@@ -38,10 +38,6 @@
   }
 }
 
-.edit__space{
-
-}
-
 .strike {
   text-decoration: line-through;
 }
@@ -50,7 +46,7 @@
   margin-right: auto;
 
   &__text {
-    -webkit-flex: none!important;
+    -webkit-flex: none !important;
   }
 }
 
@@ -134,4 +130,60 @@
       transition: stroke-dasharray .6s, stroke-dashoffset .6s;
     }
   }
+}
+
+
+.item__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 12px;
+  height: 4.49rem;
+  min-width: 17.356rem;
+
+  &:focus, &:active{
+    outline: none;
+  }
+
+
+  &__delete {
+    height: 100%;
+    width: 3.7rem;
+    background: #F9A109;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+
+    input{
+      width: 0;
+      height: 0;
+      background-color: #f9a109;
+    }
+
+
+    img {
+      width: 2rem;
+      height: 2rem;
+      cursor: pointer;
+    }
+  }
+
+  &__remove {
+    height: 2rem;
+    cursor: pointer;
+    width: 4rem;
+  }
+
+  &__add {
+    width: 4rem;
+    cursor: pointer;
+    height: 2rem;
+    padding-right: 0.5rem;
+  }
+
 }
