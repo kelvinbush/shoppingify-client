@@ -15,7 +15,7 @@ const initialState: DisplayState = {
   screen: DetailState.complete,
 };
 
-export const displayReducer = createReducer(initialState, (builder) => {
+const displayReducer = createReducer(initialState, (builder) => {
   builder.addCase(showAddState, (state) => {
     state.screen = DetailState.add;
   });
@@ -29,3 +29,5 @@ export const displayReducer = createReducer(initialState, (builder) => {
     state.screen = DetailState.details;
   });
 });
+
+export default displayReducer;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { BiArrowBack } from 'react-icons/bi';
 import styles from './details.module.scss';
 import { MdKeyboardBackspace } from 'react-icons/md';
 
