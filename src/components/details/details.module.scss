@@ -1,0 +1,87 @@
+.details__container {
+  width: 38.9rem;
+  min-width: 38.9rem;
+  background-color: white;
+  height: 100vh;
+  min-height: 64rem;
+  max-height: 120rem;
+  padding: 2rem 2rem 0;
+
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+
+  &__nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: var(--color-orange-1);
+    cursor: pointer;
+    font-weight: 500;
+    line-height: 18px;
+    margin-bottom: 1rem;
+
+    svg {
+      width: 2rem;
+      height: 1.6rem;
+      margin-right: .5rem;
+    }
+
+  }
+
+  &__sub {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #C1C1C4;
+    margin-top: 1.6rem;
+  }
+
+  &__text {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+  }
+
+  .buttons {
+    height: 5rem;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    right: 2rem;
+    left: 0;
+    justify-content: center;
+    margin-bottom: 1.6rem;
+    width: 100%;
+
+    button {
+      font-weight: bold;
+      font-size: 1.6rem;
+      line-height: 2rem;
+      cursor: pointer;
+      padding: 0 1.6rem;
+      border: none;
+    }
+
+    &__add {
+      background-color: var(--color-orange-1);
+      color: white;
+      border-radius: 12px;
+    }
+
+    &__delete {
+      background-color: white;
+      color: #34333A;
+      margin-right: 2.6rem;
+    }
+  }
+
+
+  img {
+    width: 80%;
+    height: auto;
+    object-fit: contain;
+  }
+}
