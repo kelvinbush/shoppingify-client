@@ -1,18 +1,24 @@
 import styles from './add-list-item.module.scss';
 import ShoppingListItem from '../complete-list/shopping-list-item';
 import { ActiveItemResponse } from '../../features/added-list';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import {
+  DetailState,
+  displaySelector,
+  showCompleteState,
+  showEditState,
+} from '../../features/details-display-state';
 
 export default function AddListItem({
   activeList,
   categories,
-  toggleEdit,
-  isEditing,
 }: {
   categories: string[];
   activeList: ActiveItemResponse;
-  toggleEdit: () => {};
-  isEditing: boolean;
 }) {
+  const { screen } = useAppSelector(displaySelector);
+  const dispatch = useAppDispatch();
+
   return (
     <>
       <div className={styles.name__header}>
@@ -20,7 +26,10 @@ export default function AddListItem({
         <svg
           className={styles.name__header__name__icon}
           onClick={() => {
-            toggleEdit();
+            console.log(screen);
+            screen == DetailState.complete
+              ? dispatch(showEditState())
+              : dispatch(showCompleteState());
           }}
         >
           <use xlinkHref={'/img/sprite.svg#icon-edit-pencil'} />
@@ -34,7 +43,7 @@ export default function AddListItem({
                 <p className={styles.my__items__list__header}>{category}</p>
                 {activeList.list.map((item) => {
                   if (item.category === category) {
-                    return <ShoppingListItem item={item} isEditing={isEditing} />;
+                    return <ShoppingListItem item={item} />;
                   }
                 })}
               </ul>

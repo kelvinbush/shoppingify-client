@@ -7,13 +7,17 @@ import { useCallback, useEffect, useState } from 'react';
 import Spinner from '../../components/spinner/spinner';
 import { getCategories } from '../../util/types';
 import { updateCurrentListName } from '../../util/api';
+import {
+  DetailState,
+  displaySelector,
+} from '../../features/details-display-state';
 
 export default function ItemSection() {
   const { data } = useAppSelector(authSelector);
-  const [edit, setEdit] = useState(false);
   const [listName, setListName] = useState('');
   const dispatch = useAppDispatch();
   const { activeList, pending, error } = useAppSelector(activeListSelector);
+  const { screen } = useAppSelector(displaySelector);
 
   const initialFetch = useCallback(() => {
     dispatch(getActiveList(data));
@@ -21,7 +25,7 @@ export default function ItemSection() {
 
   useEffect(() => {
     initialFetch();
-  }, [initialFetch]);
+  }, [initialFetch, dispatch]);
 
   async function submitListName() {
     await updateCurrentListName({ name: listName, id: '22' }, data);
@@ -35,12 +39,7 @@ export default function ItemSection() {
     <p>Something Went Wrong</p>
   ) : (
     <>
-      <AddListItem
-        activeList={activeList}
-        categories={categories}
-        toggleEdit={async () => setEdit(!edit)}
-        isEditing={edit}
-      />
+      <AddListItem activeList={activeList} categories={categories} />
     </>
   );
   return (
@@ -59,7 +58,7 @@ export default function ItemSection() {
         </div>
         {pending ? isPending : content}
       </div>
-      {edit ? (
+      {screen === DetailState.edit ? (
         <div className={styles.details__actions}>
           <input
             placeholder="Enter a name"

@@ -16,16 +16,16 @@ const initialState: DisplayState = {
 };
 
 export const displayReducer = createReducer(initialState, (builder) => {
-  builder.addCase(showAddState, (state, action) => {
-    state.screen = action.payload;
+  builder.addCase(showAddState, (state) => {
+    state.screen = DetailState.add;
   });
-  builder.addCase(showCompleteState, (state, action) => {
-    state.screen = action.payload;
+  builder.addCase(showCompleteState, (state) => {
+    state.screen = DetailState.complete;
   });
-  builder.addCase(showEditState, (state, action) => {
-    state.screen = action.payload;
+  builder.addCase(showEditState, (state) => {
+    state.screen = DetailState.edit;
   });
-  builder.addCase(showDetailsState, (state, action) => {
-    state.screen = action.payload;
+  builder.addCase(showDetailsState, (state) => {
+    state.screen = DetailState.details;
   });
 });

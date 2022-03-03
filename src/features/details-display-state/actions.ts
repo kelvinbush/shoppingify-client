@@ -1,9 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
 
-export const showCompleteState = createAction<DetailState>('display/complete');
-export const showEditState = createAction<DetailState>('display/edit');
-export const showDetailsState = createAction<DetailState>('display/details');
-export const showAddState = createAction<DetailState>('display/add');
+export const showCompleteState = createAction('display/complete');
+export const showEditState = createAction('display/edit');
+export const showDetailsState = createAction('display/details');
+export const showAddState = createAction('display/add');
 
 export enum DetailState {
   complete = 'COMPLETE',
