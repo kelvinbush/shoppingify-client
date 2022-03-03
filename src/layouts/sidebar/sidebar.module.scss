@@ -1,9 +1,11 @@
 .sidebar {
   min-width: 7.7rem;
   max-width: 7.7rem;
-  height: 66rem;
   background-color: #ffffff;
   display: flex;
+  height: 100vh;
+  min-height: 64rem;
+  max-height: 120rem;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
