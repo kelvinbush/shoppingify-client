@@ -1,13 +1,37 @@
 import React from 'react';
 import styles from './details.module.scss';
 import { MdKeyboardBackspace } from 'react-icons/md';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { previewSelector } from '../../features/item-preview';
+import { showEditState } from '../../features/details-display-state';
+import { addToActiveList } from '../../util/api';
+import { getActiveList } from '../../features/added-list';
+import { authSelector } from '../../features/auth';
 
 const Details = () => {
+  const { item } = useAppSelector(previewSelector);
+  const dispatch = useAppDispatch();
+  const { data } = useAppSelector(authSelector);
+
+  async function addToList() {
+    if (item) {
+      const input = {
+        itemId: item.id,
+        quantity: 1,
+      };
+      await addToActiveList(input, data);
+      dispatch(showEditState());
+    }
+  }
+
   const notes =
     ' Nutrient-dense foods are those that provide substantial amounts of vitamins, minerals and other nutrients with relatively few calories. One-third of a medium avocado (50 g) has 80 calories and contributes nearly 20 vitamins and minerals, making it a great nutrient-dense food choice.';
-  return (
+  return item ? (
     <section className={styles.details__container}>
-      <div className={styles.details__container__nav}>
+      <div
+        className={styles.details__container__nav}
+        onClick={() => dispatch(showEditState())}
+      >
         <MdKeyboardBackspace />
         <p>back</p>
       </div>
@@ -16,16 +40,20 @@ const Details = () => {
         alt=""
       />
       <p className={styles.details__container__sub}>name</p>
-      <p className={styles.details__container__text}>Avocado</p>
+      <p className={styles.details__container__text}>{item.name}</p>
       <p className={styles.details__container__sub}>category</p>
-      <p className={styles.details__container__text}>Fruit and Vegetables</p>
+      <p className={styles.details__container__text}>{item.category}</p>
       <p className={styles.details__container__sub}>note</p>
-      <p className={styles.details__container__text}>{notes}</p>
+      <p className={styles.details__container__text}>{item.note}</p>
       <div className={styles.buttons}>
         <button className={styles.buttons__delete}>delete</button>
-        <button className={styles.buttons__add}>Add to list</button>
+        <button className={styles.buttons__add} onClick={() => addToList()}>
+          Add to list
+        </button>
       </div>
     </section>
+  ) : (
+    <div />
   );
 };
 

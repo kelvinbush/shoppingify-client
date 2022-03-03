@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { authSelector } from '../../features/auth';
 import { getActiveList } from '../../features/added-list';
 import { NextPage } from 'next';
+import { addItemToPreview } from '../../features/item-preview';
+import { showDetailsState } from '../../features/details-display-state';
 
 type Props = {
   categories: string[];
@@ -24,6 +26,11 @@ const ShopItemList: NextPage<Props> = ({ categories, list }) => {
     dispatch(getActiveList(data));
   }
 
+  function previewItem(item: ShopItem) {
+    dispatch(addItemToPreview(item));
+    dispatch(showDetailsState());
+  }
+
   return (
     <div className={styles.content}>
       {categories.map((category) => {
@@ -38,7 +45,7 @@ const ShopItemList: NextPage<Props> = ({ categories, list }) => {
                   return (
                     <>
                       <div key={item.id} className={styles.content__item}>
-                        <p>{item.name}</p>
+                        <p onClick={() => previewItem(item)}>{item.name}</p>
                         <svg
                           className={styles.item__plus}
                           onClick={() => addToList(item.id)}

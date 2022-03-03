@@ -44,7 +44,7 @@
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
     border-radius: 12px;
     align-items: center;
-    cursor: pointer;
+
 
     p {
       font-style: normal;
@@ -59,14 +59,26 @@
       -webkit-flex: 0 1 70%; /*important*/
       min-width: 0;
       align-self: flex-start;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--color-background-1);
+        border-radius: 12px;
+      }
 
     }
   }
 }
+
 .item__plus {
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 2rem;
+  height: 2rem;
   fill: #C1C1C4;
   flex: 0 0 30%;
+  cursor: pointer;
+
+  &:hover {
+    fill: var(--color-orange-1)
+  }
 
 }
