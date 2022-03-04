@@ -1,0 +1,16 @@
+.new {
+  &__container {
+    width: 38.9rem;
+    min-width: 38.9rem;
+    background-color: white;
+    height: 100vh;
+    min-height: 64rem;
+    max-height: 120rem;
+    padding: 2rem 2rem 0;
+
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+  }
+}
