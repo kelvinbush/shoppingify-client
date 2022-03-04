@@ -9,15 +9,17 @@ import {
   displaySelector,
 } from '../../features/details-display-state';
 import NewItem from '../../components/NewItem/NewItem';
+import Statistics from '../../components/statistics/statistics';
 
 export default function HomePage() {
   const { screen } = useAppSelector(displaySelector);
   return (
     <div className={styles.container}>
       <Sidebar />
-      <MainContent />
-      {/*{screen === DetailState.details ? <Details /> : <ItemSection />}*/}
-      <NewItem />
+      {/*<MainContent />*/}
+      <Statistics />
+      {screen === DetailState.details ? <Details /> : <ItemSection />}
+      {/*   <NewItem />*/}
     </div>
   );
 }
