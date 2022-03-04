@@ -1,5 +1,14 @@
 import React from 'react';
 import styles from './statistics.module.scss';
+import {
+  CartesianGrid,
+  Line,
+  Tooltip,
+  XAxis,
+  YAxis,
+  LineChart,
+  ResponsiveContainer,
+} from 'recharts';
 
 const Statistics = () => {
   const items = [
@@ -11,6 +20,16 @@ const Statistics = () => {
     { name: 'Fruit and vegetables', size: 43 },
     { name: 'Meat and Fish', size: 24 },
     { name: 'Pets', size: 20 },
+  ];
+
+  const chartData = [
+    { name: 'January', total: 35 },
+    { name: 'February', total: 119 },
+    { name: 'March', total: 35 },
+    { name: 'April', total: 14 },
+    { name: 'May', total: 30 },
+    { name: 'June', total: 14 },
+    { name: 'July', total: 40 },
   ];
 
   return (
@@ -51,6 +70,18 @@ const Statistics = () => {
       </div>
       <div className={styles.statistics__chart}>
         <h2>Monthly Summary</h2>
+        <ResponsiveContainer width="85%" height={300}>
+          <LineChart
+            data={chartData}
+            margin={{ top: 5, right: 5, bottom: 5, left: 0 }}
+          >
+            <Line type="monotone" dataKey="total" stroke="#F9A109" />
+            <CartesianGrid stroke="#ccc" strokeDasharray="2 2" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );
