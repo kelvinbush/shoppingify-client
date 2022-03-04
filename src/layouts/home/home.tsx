@@ -8,6 +8,7 @@ import {
   DetailState,
   displaySelector,
 } from '../../features/details-display-state';
+import NewItem from '../../components/NewItem/NewItem';
 
 export default function HomePage() {
   const { screen } = useAppSelector(displaySelector);
@@ -15,7 +16,8 @@ export default function HomePage() {
     <div className={styles.container}>
       <Sidebar />
       <MainContent />
-      {screen === DetailState.details ? <Details /> : <ItemSection />}
+      {/*{screen === DetailState.details ? <Details /> : <ItemSection />}*/}
+      <NewItem />
     </div>
   );
 }
