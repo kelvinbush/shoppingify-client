@@ -10,6 +10,7 @@ import {
 } from '../../features/details-display-state';
 import NewItem from '../../components/NewItem/NewItem';
 import Statistics from '../../components/statistics/statistics';
+import ShoppingHistory from '../../components/shopping-history/shopping-history';
 
 export default function HomePage() {
   const { screen } = useAppSelector(displaySelector);
@@ -17,7 +18,8 @@ export default function HomePage() {
     <div className={styles.container}>
       <Sidebar />
       {/*<MainContent />*/}
-      <Statistics />
+      {/*<Statistics />*/}
+      <ShoppingHistory />
       {screen === DetailState.details ? <Details /> : <ItemSection />}
       {/*   <NewItem />*/}
     </div>
