@@ -31,18 +31,11 @@ export default function MainContent() {
           <span>Shoppingify</span> allows you to take your shopping list
           wherever you go
         </header>
-        <form action="#" className={styles.search}>
-          <button className={styles.search__button}>
-            <svg className={styles.search__icon}>
-              <use xlinkHref={'/img/sprite.svg#icon-magnifying-glass'} />
-            </svg>
-          </button>
-          <input
-            type="text"
-            className={styles.search__input}
-            placeholder="Search items"
-          />
-        </form>
+        <input
+          className={styles.search}
+          type="text"
+          placeholder={'Search items'}
+        />
       </div>
       <ShopItemList categories={categories} list={shopItemList} />
     </section>

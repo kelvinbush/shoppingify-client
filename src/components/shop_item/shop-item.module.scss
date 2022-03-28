@@ -3,7 +3,7 @@
   line-height: 2rem;
   margin-top: 3rem;
   overflow-y: auto;
-  height: 50rem;
+  //height: 50rem;
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -23,27 +23,26 @@
   &__header {
     font-size: 1.8rem;
     line-height: 2.2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    margin-top: 3rem;
   }
 
   &__items__box {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: start;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(18.5rem, 1fr) );
+    grid-gap: 2rem 1rem;
   }
 
   &__item {
     background-color: #fff;
     width: 18.2rem;
-    display: flex;
+    display: grid;
+    grid-template-columns: 13.2rem 5rem;
     justify-content: space-between;
     padding: .5rem;
-    margin-right: 1.8rem;
-    margin-bottom: 1.3rem;
     min-height: 5rem;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
     border-radius: 12px;
-    align-items: center;
 
 
     p {
@@ -53,12 +52,6 @@
       padding-left: .5rem;
       padding-top: .8rem;
       padding-bottom: .25rem;
-      max-width: 70%;
-      white-space: initial;
-      -webkit-order: 0;
-      -webkit-flex: 0 1 70%; /*important*/
-      min-width: 0;
-      align-self: flex-start;
       cursor: pointer;
 
       &:hover {
@@ -74,8 +67,9 @@
   width: 2rem;
   height: 2rem;
   fill: #C1C1C4;
-  flex: 0 0 30%;
   cursor: pointer;
+  align-self: center;
+  margin-left: 1rem;
 
   &:hover {
     fill: var(--color-orange-1)

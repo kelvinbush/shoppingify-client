@@ -17,9 +17,9 @@ export default function HomePage() {
   return (
     <div className={styles.container}>
       <Sidebar />
-      {/*<MainContent />*/}
+      <MainContent />
       {/*<Statistics />*/}
-      <ShoppingHistory />
+      {/*<ShoppingHistory />*/}
       {screen === DetailState.details ? <Details /> : <ItemSection />}
       {/*   <NewItem />*/}
     </div>
