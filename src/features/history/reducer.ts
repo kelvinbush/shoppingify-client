@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { getShoppingHistory } from './actions';
 
-interface HistoryItem {
+export interface HistoryItem {
   id: string;
   name: string;
   isComplete: boolean;

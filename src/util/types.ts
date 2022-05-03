@@ -1,5 +1,5 @@
 import { ShopItem } from '../features/content';
-import { ActiveListItem } from '../features/added-list/actions';
+import { ActiveListItem } from '../features/added-list';
 
 export const API_BASE_URL = 'http://localhost:1500';
 
@@ -14,4 +14,9 @@ export function getCategories(data: ShopItem[] | ActiveListItem[]) {
 export interface AuthToken {
   accessToken: string;
   refreshToken: string;
+}
+
+export function formatDate(date: string) {
+  const dateObj = new Date(date);
+  return `${dateObj.toLocaleString('en-US', { month: 'long' })} ${dateObj.getDate()}.${dateObj.getFullYear()}`;
 }
