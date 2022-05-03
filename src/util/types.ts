@@ -18,5 +18,5 @@ export interface AuthToken {
 
 export function formatDate(date: string) {
   const dateObj = new Date(date);
-  return `${dateObj.toLocaleString('en-US', { month: 'long' })} ${dateObj.getDate()}.${dateObj.getFullYear()}`;
+  return `${dateObj.toLocaleString('en-US', { weekday: 'short' })} ${dateObj.getDate()}.${dateObj.getMonth() + 1}.${dateObj.getFullYear()}`;
 }
