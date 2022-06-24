@@ -5,6 +5,7 @@ import activeListReducer from '../features/added-list/reducer';
 import completeListReducer from '../features/complete-list-state/reducer';
 import displayReducer from '../features/details-display-state/reducer';
 import previewReducer from '../features/item-preview/reducer';
+import historyReducer from '../features/history/reducer';
 
 export const store = configureStore({
   reducer: {
@@ -14,13 +15,12 @@ export const store = configureStore({
     completeList: completeListReducer,
     detailDisplay: displayReducer,
     previewItem: previewReducer,
-  },
+    history: historyReducer
+  }
 });
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
   RootState,
   unknown,
-  Action<string>
->;
+  Action<string>>;
