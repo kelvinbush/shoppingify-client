@@ -1,27 +1,25 @@
 import styles from "./auth.module.scss";
-import { useRouter } from "next/router";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { authSelector, getJwtTokens, UserLogin } from "../features/auth";
-import { useEffect, useState } from "react";
+import {useAppDispatch, useAppSelector} from "../app/hooks";
+import {authSelector, getJwtTokens, UserLogin} from "../features/auth";
+import {useState} from "react";
 import Spinner from "../components/spinner/spinner";
 
-export default function Login() {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useAppDispatch();
-  const router = useRouter();
-  const { data, pending, error } = useAppSelector(authSelector);
-
-  async function route() {
-    await router.push("/shop/shop");
-  }
-
-  useEffect(() => {
-    if (data.accessToken.length > 1) {
-      route().then((r) => r);
-    }
-  });
-
+  const {pending} = useAppSelector(authSelector);
+  
+  /* async function route() {
+     await router.push("/shop/shop");
+   }
+ 
+   useEffect(() => {
+     if (data.accessToken.length > 1) {
+       route().then((r) => r);
+     }
+   });*/
+  
   async function submitLogin() {
     const user: UserLogin = {
       email,
@@ -33,7 +31,7 @@ export default function Login() {
       console.log(e);
     }
   }
-
+  
   return (
     <div className={styles.page}>
       <div className={styles.modal}>
@@ -67,4 +65,6 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};
+
+export default Login;

@@ -12,7 +12,7 @@ export default function EditListItem({ item }: { item: ActiveListItem }) {
 
   async function submitQuantity(quantity: number) {
     const input = {
-      activeId: item.activeId,
+      itemId: item.activeId,
       quantity,
     };
     await updateQuantity(input, data);
@@ -21,7 +21,7 @@ export default function EditListItem({ item }: { item: ActiveListItem }) {
 
   async function deleteItem(quantity: number) {
     const input = {
-      activeId: item.activeId,
+      ...item,
       quantity,
     };
     await deleteActiveItem(input, data);

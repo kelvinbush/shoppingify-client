@@ -1,30 +1,33 @@
-import Image from 'next/image';
 import styles from './sidebar.module.scss';
-import { useAppSelector } from '../../app/hooks';
-import { completeListSelector } from '../../features/complete-list-state';
-import { activeListSelector } from '../../features/added-list';
+import {useAppSelector} from '../../app/hooks';
+import {activeListSelector} from '../../features/added-list';
+import {NavLink} from "react-router-dom";
 
-export default function Sidebar() {
-  const { activeList, pending, error } = useAppSelector(activeListSelector);
+const Sidebar = () => {
+  const {activeList} = useAppSelector(activeListSelector);
   return (
     <section className={styles.sidebar}>
-      <Image
+      <img
         src={'/img/logo.svg'}
         alt="logo"
         className={styles.sidebar__logo}
-        width={'41'}
-        height={'41'}
       />
       <div className={styles.sidebar__selection}>
-        <svg className={styles.sidebar__icon}>
-          <use xlinkHref={'/img/sprite.svg#icon-file-text'} />
-        </svg>
+        <NavLink to={'/shop/list'}>
+          <svg className={styles.sidebar__icon}>
+            <use xlinkHref={'/img/sprite.svg#icon-file-text'} />
+          </svg>
+        </NavLink>
+        <NavLink to={'/shop/stats'}>
         <svg className={styles.sidebar__icon}>
           <use xlinkHref={'/img/sprite.svg#icon-spinner11'} />
         </svg>
+        </NavLink>
+        <NavLink to={'/shop/history'}>
         <svg className={styles.sidebar__icon}>
           <use xlinkHref={'/img/sprite.svg#icon-stats-dots'} />
         </svg>
+        </NavLink>
       </div>
       <div className={styles.sidebar__cart}>
         <svg className={styles.sidebar__cart__icon}>
@@ -36,4 +39,6 @@ export default function Sidebar() {
       </div>
     </section>
   );
-}
+};
+
+export default Sidebar;
