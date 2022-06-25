@@ -35,14 +35,18 @@ function App() {
 
   axios.interceptors.response.use(
     (response) => {
-      if (response.headers["x-access-token"])
+      if (response.headers["x-access-token"]) {
         console.log(response.headers["x-access-token"]);
+        const tokens = {
+          accessToken: response.headers["x-access-token"],
+          refreshToken: data.refreshToken,
+        };
+        const serializedAuth = JSON.stringify(tokens);
+        localStorage.setItem("tokens", serializedAuth);
+      }
       return response;
     },
     (error) => {
-      if (error.response.status == 403) {
-        console.log("away");
-      }
       return Promise.reject(error);
     }
   );
