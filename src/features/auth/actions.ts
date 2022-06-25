@@ -1,13 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_BASE_URL } from "../../util/types";
 
 export const getJwtTokens = createAsyncThunk(
   "auth/jwt",
   async (input: UserLogin) => {
-    const response = await axios.post(
-      "http://localhost:1500/api/sessions",
-      input
-    );
+    const response = await axios.post(`${API_BASE_URL}/sessions`, input);
     return response.data;
   }
 );

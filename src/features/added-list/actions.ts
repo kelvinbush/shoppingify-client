@@ -5,7 +5,7 @@ import axios from "axios";
 export const getActiveList = createAsyncThunk(
   "active/list",
   async (token: AuthToken) => {
-    const response = await axios.get(`${API_BASE_URL}/api/active`, {
+    const response = await axios.get(`${API_BASE_URL}/active`, {
       headers: {
         Authorization: token.accessToken,
         "x-refresh": token.refreshToken,
@@ -21,13 +21,6 @@ export interface ActiveItemResponse {
   list: ActiveListItem[];
 }
 
-/**
- *  id: string;
- *   name: string;
- *   category: string;
- *   quantity: number;
- *   isSelected: boolean;
- *   activeId:string*/
 export interface ActiveListItem {
   id: string;
   name: string;

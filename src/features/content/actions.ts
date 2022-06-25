@@ -5,7 +5,7 @@ import { API_BASE_URL, AuthToken } from "../../util/types";
 export const getShopItems = createAsyncThunk(
   "shop/items",
   async (token: AuthToken) => {
-    const response = await axios.get(`${API_BASE_URL}/api/items`, {
+    const response = await axios.get(`${API_BASE_URL}/items`, {
       headers: {
         Authorization: token.accessToken,
         "x-refresh": token.refreshToken,
