@@ -1,19 +1,17 @@
-import { AuthToken } from "./types";
+import { API_BASE_URL, AuthToken } from "./types";
 import axios from "axios";
 import { ActiveListItem } from "../features/added-list";
 
+const baseUrl = `${API_BASE_URL}/active`;
+
 export async function toggleSelectItem(input: SelectItem, token: AuthToken) {
   try {
-    const response = await axios.patch(
-      "http://localhost:1500/api/active",
-      input,
-      {
-        headers: {
-          Authorization: token.accessToken,
-          "x-refresh": token.refreshToken,
-        },
-      }
-    );
+    const response = await axios.patch(`${baseUrl}`, input, {
+      headers: {
+        Authorization: token.accessToken,
+        "x-refresh": token.refreshToken,
+      },
+    });
     return response.data.complete;
   } catch (e) {
     console.log(e);
@@ -25,16 +23,12 @@ export async function addToActiveList(
   token: AuthToken
 ) {
   try {
-    const response = await axios.post(
-      "http://localhost:1500/api/active-add",
-      input,
-      {
-        headers: {
-          Authorization: token.accessToken,
-          "x-refresh": token.refreshToken,
-        },
-      }
-    );
+    const response = await axios.post(`${baseUrl}-add`, input, {
+      headers: {
+        Authorization: token.accessToken,
+        "x-refresh": token.refreshToken,
+      },
+    });
     return response.data.complete;
   } catch (e) {
     console.log(e);
@@ -46,16 +40,12 @@ export async function updateQuantity(
   token: AuthToken
 ) {
   try {
-    const response = await axios.patch(
-      "http://localhost:1500/api/active-add",
-      input,
-      {
-        headers: {
-          Authorization: token.accessToken,
-          "x-refresh": token.refreshToken,
-        },
-      }
-    );
+    const response = await axios.patch(`${baseUrl}-add`, input, {
+      headers: {
+        Authorization: token.accessToken,
+        "x-refresh": token.refreshToken,
+      },
+    });
     return response.data.complete;
   } catch (e) {
     console.log(e);
@@ -67,16 +57,12 @@ export async function deleteActiveItem(
   token: AuthToken
 ) {
   try {
-    const response = await axios.patch(
-      "http://localhost:1500/api/active-del",
-      input,
-      {
-        headers: {
-          Authorization: token.accessToken,
-          "x-refresh": token.refreshToken,
-        },
-      }
-    );
+    const response = await axios.patch(`${baseUrl}-del`, input, {
+      headers: {
+        Authorization: token.accessToken,
+        "x-refresh": token.refreshToken,
+      },
+    });
     return response.data.complete;
   } catch (e) {
     console.log(e);
@@ -86,16 +72,12 @@ export async function deleteActiveItem(
 export async function updateCurrentListName(input: EditName, token: AuthToken) {
   try {
     console.log(input);
-    const response = await axios.patch(
-      "http://localhost:1500/api/active-name",
-      input,
-      {
-        headers: {
-          Authorization: token.accessToken,
-          "x-refresh": token.refreshToken,
-        },
-      }
-    );
+    const response = await axios.patch(`${baseUrl}-name`, input, {
+      headers: {
+        Authorization: token.accessToken,
+        "x-refresh": token.refreshToken,
+      },
+    });
     return response.data.complete;
   } catch (e) {
     console.log(e);

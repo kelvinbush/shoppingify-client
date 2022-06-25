@@ -10,7 +10,7 @@ import ShoppingHistory from "./components/shopping-history/shopping-history";
 import { DetailState, displaySelector } from "./features/details-display-state";
 import Details from "./components/details/details";
 import ItemSection from "./layouts/item-section/item_section";
-import styles from "./layouts/home/home.module.scss";
+import styles from "./App.module.scss";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
