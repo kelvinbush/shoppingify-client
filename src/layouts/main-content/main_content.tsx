@@ -12,16 +12,12 @@ export default function MainContent() {
   const dispatch = useAppDispatch();
 
   const initialFetch = useCallback(() => {
-    const token = {
-      accessToken: data.accessToken,
-      refreshToken: data.refreshToken,
-    };
-    dispatch(getShopItems(token));
-  }, [dispatch]);
+    dispatch(getShopItems(data));
+  }, [dispatch, data]);
 
   useEffect(() => {
     initialFetch();
-  }, [initialFetch]);
+  }, [initialFetch, dispatch]);
 
   const categories = getCategories(shopItemList);
   return (

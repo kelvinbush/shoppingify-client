@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { getJwtTokens } from "./actions";
+import { getJwtTokens, getTokensFromLocal } from "./actions";
 
 export type AuthState = {
   data: { accessToken: string; refreshToken: string };
@@ -16,6 +16,17 @@ const initialState: AuthState = {
   error: false,
 };
 
+const getLocal = () => {
+  const serializedTokens = localStorage.getItem("tokens");
+  const localTokens = serializedTokens && JSON.parse(serializedTokens);
+  return localTokens
+    ? localTokens
+    : {
+        accessToken: "",
+        refreshToken: "",
+      };
+};
+
 export const authReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(getJwtTokens.pending, (state) => {
@@ -28,6 +39,11 @@ export const authReducer = createReducer(initialState, (builder) => {
     .addCase(getJwtTokens.rejected, (state) => {
       state.pending = false;
       state.error = true;
+    })
+    .addCase(getTokensFromLocal, (state) => {
+      state.pending = false;
+      state.error = false;
+      state.data = getLocal();
     });
 });
 

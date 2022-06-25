@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Sidebar from "./layouts/sidebar/sidebar";
-import { useAppSelector } from "./app/hooks";
-import { authSelector } from "./features/auth";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { authSelector, getTokensFromLocal } from "./features/auth";
 import Login from "./pages/auth";
 import MainContent from "./layouts/main-content/main_content";
 import Statistics from "./components/statistics/statistics";
@@ -13,15 +13,17 @@ import ItemSection from "./layouts/item-section/item_section";
 import styles from "./App.module.scss";
 
 function App() {
+  const dispatch = useAppDispatch();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { data } = useAppSelector(authSelector);
   const { screen } = useAppSelector(displaySelector);
 
   useEffect(() => {
+    dispatch(getTokensFromLocal());
     if (data.accessToken.length > 1) {
       setIsLoggedIn(true);
     }
-  }, [data.accessToken.length]);
+  }, [data.accessToken.length, dispatch]);
 
   let detail = <></>;
 

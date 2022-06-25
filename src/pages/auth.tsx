@@ -10,16 +10,6 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const { pending } = useAppSelector(authSelector);
 
-  /* async function route() {
-     await router.push("/shop/shop");
-   }
- 
-   useEffect(() => {
-     if (data.accessToken.length > 1) {
-       route().then((r) => r);
-     }
-   });*/
-
   async function submitLogin() {
     const user: UserLogin = {
       email,
