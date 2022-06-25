@@ -5,6 +5,7 @@ import { useCallback, useEffect } from "react";
 import { getShopItems, shopItemsSelector } from "../../features/content";
 import { getCategories } from "../../util/types";
 import ShopItemList from "../../components/shop_item/shop-item";
+import Rays from "../../components/spinner/Rays";
 
 export default function MainContent() {
   const { data } = useAppSelector(authSelector);
@@ -33,7 +34,11 @@ export default function MainContent() {
           placeholder={"Search items"}
         />
       </div>
-      <ShopItemList categories={categories} list={shopItemList} />
+      {pending ? (
+        <Rays />
+      ) : (
+        <ShopItemList categories={categories} list={shopItemList} />
+      )}
     </section>
   );
 }

@@ -1,14 +1,23 @@
 import styles from "./auth.module.scss";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { authSelector, getJwtTokens, UserLogin } from "../features/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Spinner from "../components/spinner/spinner";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useAppDispatch();
   const { pending } = useAppSelector(authSelector);
+  const { data } = useAppSelector(authSelector);
+
+  useEffect(() => {
+    if (data.accessToken.length > 1) {
+      navigate("shop/list");
+    }
+  }, [data]);
 
   async function submitLogin() {
     const user: UserLogin = {

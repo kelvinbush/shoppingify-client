@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Sidebar from "./layouts/sidebar/sidebar";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { authSelector, getTokensFromLocal } from "./features/auth";
@@ -11,9 +11,11 @@ import { DetailState, displaySelector } from "./features/details-display-state";
 import Details from "./components/details/details";
 import ItemSection from "./layouts/item-section/item_section";
 import styles from "./App.module.scss";
+import axios from "axios";
 
 function App() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { data } = useAppSelector(authSelector);
   const { screen } = useAppSelector(displaySelector);
@@ -31,9 +33,23 @@ function App() {
     detail = screen === DetailState.details ? <Details /> : <ItemSection />;
   }
 
+  axios.interceptors.response.use(
+    (response) => {
+      if (response.headers["x-access-token"])
+        console.log(response.headers["x-access-token"]);
+      return response;
+    },
+    (error) => {
+      if (error.response.status == 403) {
+        console.log("away");
+      }
+      return Promise.reject(error);
+    }
+  );
+
   return (
     <div className={styles.container}>
-      {isLoggedIn && <Sidebar />}
+      <Sidebar />
       <Routes>
         <Route
           path={"/"}
