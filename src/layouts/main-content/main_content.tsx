@@ -8,7 +8,7 @@ import ShopItemList from "../../components/shop_item/shop-item";
 
 export default function MainContent() {
   const { data } = useAppSelector(authSelector);
-  const { shopItemList } = useAppSelector(shopItemsSelector);
+  const { shopItemList, pending } = useAppSelector(shopItemsSelector);
   const dispatch = useAppDispatch();
 
   const initialFetch = useCallback(() => {
