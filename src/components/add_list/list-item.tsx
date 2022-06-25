@@ -1,13 +1,13 @@
-import styles from './add-list-item.module.scss';
-import ShoppingListItem from '../complete-list/shopping-list-item';
-import { ActiveItemResponse } from '../../features/added-list';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import styles from "./add-list-item.module.scss";
+import ShoppingListItem from "../complete-list/shopping-list-item";
+import { ActiveItemResponse } from "../../features/added-list";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   DetailState,
   displaySelector,
   showCompleteState,
   showEditState,
-} from '../../features/details-display-state';
+} from "../../features/details-display-state";
 
 export default function AddListItem({
   activeList,
@@ -32,7 +32,7 @@ export default function AddListItem({
               : dispatch(showCompleteState());
           }}
         >
-          <use xlinkHref={'/img/sprite.svg#icon-edit-pencil'} />
+          <use xlinkHref={"/img/sprite.svg#icon-edit-pencil"} />
         </svg>
       </div>
       <div className={styles.my__items}>

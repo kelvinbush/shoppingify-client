@@ -1,17 +1,17 @@
-import React from 'react';
-import styles from './details.module.scss';
-import {MdKeyboardBackspace} from 'react-icons/md';
-import {useAppDispatch, useAppSelector} from '../../app/hooks';
-import {previewSelector} from '../../features/item-preview';
-import {showEditState} from '../../features/details-display-state';
-import {addToActiveList} from '../../util/api';
-import {authSelector} from '../../features/auth';
+import React from "react";
+import styles from "./details.module.scss";
+import { MdKeyboardBackspace } from "react-icons/md";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { previewSelector } from "../../features/item-preview";
+import { showEditState } from "../../features/details-display-state";
+import { addToActiveList } from "../../util/api";
+import { authSelector } from "../../features/auth";
 
 const Details = () => {
-  const {item} = useAppSelector(previewSelector);
+  const { item } = useAppSelector(previewSelector);
   const dispatch = useAppDispatch();
-  const {data} = useAppSelector(authSelector);
-  
+  const { data } = useAppSelector(authSelector);
+
   async function addToList() {
     if (item) {
       const input = {
@@ -22,9 +22,7 @@ const Details = () => {
       dispatch(showEditState());
     }
   }
-  
-  const notes =
-    ' Nutrient-dense foods are those that provide substantial amounts of vitamins, minerals and other nutrients with relatively few calories. One-third of a medium avocado (50 g) has 80 calories and contributes nearly 20 vitamins and minerals, making it a great nutrient-dense food choice.';
+
   return item ? (
     <section className={styles.details__container}>
       <div

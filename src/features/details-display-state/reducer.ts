@@ -4,8 +4,8 @@ import {
   showCompleteState,
   showDetailsState,
   showEditState,
-} from './actions';
-import { createReducer } from '@reduxjs/toolkit';
+} from "./actions";
+import { createReducer } from "@reduxjs/toolkit";
 
 type DisplayState = {
   screen: DetailState;

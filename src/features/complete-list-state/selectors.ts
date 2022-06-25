@@ -1,5 +1,5 @@
-import { RootState } from '../../app/store';
-import { createSelector } from '@reduxjs/toolkit';
+import { RootState } from "../../app/store";
+import { createSelector } from "@reduxjs/toolkit";
 
 const selectCompleteList = (state: RootState) => state.completeList;
 

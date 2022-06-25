@@ -1,7 +1,7 @@
-import { ShopItem } from '../features/content';
-import { ActiveListItem } from '../features/added-list';
+import { ShopItem } from "../features/content";
+import { ActiveListItem } from "../features/added-list";
 
-export const API_BASE_URL = 'http://localhost:1500';
+export const API_BASE_URL = "http://localhost:1500";
 
 export function getCategories(data: ShopItem[] | ActiveListItem[]) {
   const categorySet: Set<string> = new Set();
@@ -18,5 +18,7 @@ export interface AuthToken {
 
 export function formatDate(date: string) {
   const dateObj = new Date(date);
-  return `${dateObj.toLocaleString('en-US', { weekday: 'short' })} ${dateObj.getDate()}.${dateObj.getMonth() + 1}.${dateObj.getFullYear()}`;
+  return `${dateObj.toLocaleString("en-US", {
+    weekday: "short",
+  })} ${dateObj.getDate()}.${dateObj.getMonth() + 1}.${dateObj.getFullYear()}`;
 }

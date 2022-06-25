@@ -1,9 +1,9 @@
-import styles from './shopping-list-item.module.scss';
-import { ActiveListItem, getActiveList } from '../../features/added-list';
-import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { deleteActiveItem, updateQuantity } from '../../util/api';
-import { authSelector } from '../../features/auth';
+import styles from "./shopping-list-item.module.scss";
+import { ActiveListItem, getActiveList } from "../../features/added-list";
+import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { deleteActiveItem, updateQuantity } from "../../util/api";
+import { authSelector } from "../../features/auth";
 
 export default function EditListItem({ item }: { item: ActiveListItem }) {
   const [isEditing, setEditing] = useState(false);
@@ -48,13 +48,13 @@ export default function EditListItem({ item }: { item: ActiveListItem }) {
       >
         <div className={styles.item__controls__delete}>
           <img
-            src={'/img/delete.svg'}
+            src={"/img/delete.svg"}
             alt="delete icon"
             onClick={() => deleteItem(item.quantity)}
           />
         </div>
         <img
-          src={'/img/remove.svg'}
+          src={"/img/remove.svg"}
           alt="remove icon"
           className={styles.item__controls__remove}
           onClick={() => submitQuantity(item.quantity - 1)}
@@ -63,7 +63,7 @@ export default function EditListItem({ item }: { item: ActiveListItem }) {
           <span>{item.quantity}pcs</span>
         </div>
         <img
-          src={'/img/add.svg'}
+          src={"/img/add.svg"}
           alt="add icon"
           className={styles.item__controls__add}
           onClick={() => submitQuantity(item.quantity + 1)}

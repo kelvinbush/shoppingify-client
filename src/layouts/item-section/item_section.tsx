@@ -1,20 +1,20 @@
-import styles from './item_section.module.scss';
-import AddListItem from '../../components/add_list/list-item';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { authSelector } from '../../features/auth';
-import { activeListSelector, getActiveList } from '../../features/added-list';
-import { useCallback, useEffect, useState } from 'react';
-import Spinner from '../../components/spinner/spinner';
-import { getCategories } from '../../util/types';
-import { updateCurrentListName } from '../../util/api';
+import styles from "./item_section.module.scss";
+import AddListItem from "../../components/add_list/list-item";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { authSelector } from "../../features/auth";
+import { activeListSelector, getActiveList } from "../../features/added-list";
+import { useCallback, useEffect, useState } from "react";
+import Spinner from "../../components/spinner/spinner";
+import { getCategories } from "../../util/types";
+import { updateCurrentListName } from "../../util/api";
 import {
   DetailState,
   displaySelector,
-} from '../../features/details-display-state';
+} from "../../features/details-display-state";
 
 export default function ItemSection() {
   const { data } = useAppSelector(authSelector);
-  const [listName, setListName] = useState('');
+  const [listName, setListName] = useState("");
   const dispatch = useAppDispatch();
   const { activeList, pending, error } = useAppSelector(activeListSelector);
   const { screen } = useAppSelector(displaySelector);
@@ -28,7 +28,7 @@ export default function ItemSection() {
   }, [initialFetch, dispatch]);
 
   async function submitListName() {
-    await updateCurrentListName({ name: listName, id: '22' }, data);
+    await updateCurrentListName({ name: listName, id: "22" }, data);
     dispatch(getActiveList(data));
   }
 
@@ -48,11 +48,11 @@ export default function ItemSection() {
         <div className={styles.add}>
           <img
             className={styles.add__source}
-            src={'/img/source.svg'}
+            src={"/img/source.svg"}
             alt="Source image"
           />
           <div className={styles.add__container}>
-            <p>Didn't find what you need?</p>
+            <p>Didn&apos;t find what you need?</p>
             <button>Add item</button>
           </div>
         </div>

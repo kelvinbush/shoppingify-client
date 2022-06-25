@@ -1,5 +1,5 @@
-import { getShopItems, ShopItem } from './actions';
-import { createReducer } from '@reduxjs/toolkit';
+import { getShopItems, ShopItem } from "./actions";
+import { createReducer } from "@reduxjs/toolkit";
 
 export type ShopItemState = {
   shopItemList: ShopItem[];

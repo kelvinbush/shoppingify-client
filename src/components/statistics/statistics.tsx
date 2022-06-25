@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './statistics.module.scss';
+import React from "react";
+import styles from "./statistics.module.scss";
 import {
   CartesianGrid,
   Line,
@@ -8,28 +8,28 @@ import {
   YAxis,
   LineChart,
   ResponsiveContainer,
-} from 'recharts';
+} from "recharts";
 
 const Statistics = () => {
   const items = [
-    { name: 'Banana', size: 24 },
-    { name: 'Rice', size: 20 },
-    { name: 'Chicken 1kg', size: 16 },
+    { name: "Banana", size: 24 },
+    { name: "Rice", size: 20 },
+    { name: "Chicken 1kg", size: 16 },
   ];
   const categories = [
-    { name: 'Fruit and vegetables', size: 43 },
-    { name: 'Meat and Fish', size: 24 },
-    { name: 'Pets', size: 20 },
+    { name: "Fruit and vegetables", size: 43 },
+    { name: "Meat and Fish", size: 24 },
+    { name: "Pets", size: 20 },
   ];
 
   const chartData = [
-    { name: 'January', total: 35 },
-    { name: 'February', total: 119 },
-    { name: 'March', total: 35 },
-    { name: 'April', total: 14 },
-    { name: 'May', total: 30 },
-    { name: 'June', total: 14 },
-    { name: 'July', total: 40 },
+    { name: "January", total: 35 },
+    { name: "February", total: 119 },
+    { name: "March", total: 35 },
+    { name: "April", total: 14 },
+    { name: "May", total: 30 },
+    { name: "June", total: 14 },
+    { name: "July", total: 40 },
   ];
 
   return (
@@ -38,14 +38,17 @@ const Statistics = () => {
         <div className={styles.statistics__top__items}>
           <h2>Top items</h2>
           {items.map((item) => (
-            <div className={styles.statistics__top__item_container}>
+            <div
+              key={item.name}
+              className={styles.statistics__top__item_container}
+            >
               <div className={styles.statistics__top__item_text}>
                 <p>{item.name}</p>
                 <p>{item.size}%</p>
               </div>
               <div className={styles.statistics__top__item_bar}>
                 <div
-                  style={{ width: `${item.size}%`, backgroundColor: '#F9A109' }}
+                  style={{ width: `${item.size}%`, backgroundColor: "#F9A109" }}
                 />
               </div>
             </div>
@@ -54,14 +57,17 @@ const Statistics = () => {
         <div className={styles.statistics__top__categories}>
           <h2>Top categories</h2>
           {categories.map((item) => (
-            <div className={styles.statistics__top__item_container}>
+            <div
+              key={item.name}
+              className={styles.statistics__top__item_container}
+            >
               <div className={styles.statistics__top__item_text}>
                 <p>{item.name}</p>
                 <p>{item.size}%</p>
               </div>
               <div className={styles.statistics__top__item_bar}>
                 <div
-                  style={{ width: `${item.size}%`, backgroundColor: '#56CCF2' }}
+                  style={{ width: `${item.size}%`, backgroundColor: "#56CCF2" }}
                 />
               </div>
             </div>

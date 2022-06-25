@@ -1,14 +1,14 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { API_BASE_URL, AuthToken } from '../../util/types';
-import axios from 'axios';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { API_BASE_URL, AuthToken } from "../../util/types";
+import axios from "axios";
 
 export const getActiveList = createAsyncThunk(
-  'active/list',
+  "active/list",
   async (token: AuthToken) => {
     const response = await axios.get(`${API_BASE_URL}/api/active`, {
       headers: {
         Authorization: token.accessToken,
-        'x-refresh': token.refreshToken,
+        "x-refresh": token.refreshToken,
       },
     });
 

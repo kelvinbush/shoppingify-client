@@ -1,5 +1,5 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { getShoppingHistory } from './actions';
+import { createReducer } from "@reduxjs/toolkit";
+import { getShoppingHistory } from "./actions";
 
 export interface HistoryItem {
   id: string;

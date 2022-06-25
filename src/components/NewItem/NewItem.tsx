@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import styles from './new-item.module.scss';
-import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
+import React, { useState } from "react";
+import styles from "./new-item.module.scss";
+import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
 
 const NewItem = () => {
   const [showDrop, setShowDrop] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    imageUrl: '',
-    note: '',
-    category: '',
+    name: "",
+    imageUrl: "",
+    note: "",
+    category: "",
   });
 
   const handleInputChange = (
@@ -27,31 +27,31 @@ const NewItem = () => {
         <input
           type="text"
           value={name}
-          name={'name'}
-          placeholder={'Enter an name'}
+          name={"name"}
+          placeholder={"Enter an name"}
           onChange={handleInputChange}
         />
         <p className={styles.new__text}>Note(optional)</p>
         <textarea
           value={note}
-          name={'note'}
+          name={"note"}
           onChange={handleInputChange}
-          placeholder={'Enter a note'}
+          placeholder={"Enter a note"}
         />
         <p className={styles.new__text}>Image(optional)</p>
         <input
           type="text"
           value={imageUrl}
-          name={'image'}
-          placeholder={'Enter a url'}
+          name={"image"}
+          placeholder={"Enter a url"}
           onChange={handleInputChange}
         />
         <p className={styles.new__text}>Category</p>
         <input
           type="text"
           value={category}
-          name={'category'}
-          placeholder={'Enter a category'}
+          name={"category"}
+          placeholder={"Enter a category"}
           onChange={handleInputChange}
         />
         <div className={styles.center__div}>
@@ -63,7 +63,7 @@ const NewItem = () => {
           </div>
           <ul className={styles.siblings}>
             <li className={styles.pagenav}>
-              <ul className={`${showDrop ? styles.show : ''}`}>
+              <ul className={`${showDrop ? styles.show : ""}`}>
                 <li className={styles.category__item}>
                   <a href="#">List Item 1</a>
                 </li>

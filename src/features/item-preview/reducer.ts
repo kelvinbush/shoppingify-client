@@ -1,6 +1,6 @@
-import { ShopItem } from '../content';
-import { createReducer } from '@reduxjs/toolkit';
-import { addItemToPreview } from './actions';
+import { ShopItem } from "../content";
+import { createReducer } from "@reduxjs/toolkit";
+import { addItemToPreview } from "./actions";
 
 type ItemPreviewState = {
   item?: ShopItem;

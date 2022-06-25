@@ -1,8 +1,8 @@
-import styles from './shopping-list-item.module.scss';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { ActiveListItem, getActiveList } from '../../features/added-list';
-import { toggleSelectItem } from '../../util/api';
-import { authSelector } from '../../features/auth';
+import styles from "./shopping-list-item.module.scss";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { ActiveListItem, getActiveList } from "../../features/added-list";
+import { toggleSelectItem } from "../../util/api";
+import { authSelector } from "../../features/auth";
 
 export default function CompleteListItem({ item }: { item: ActiveListItem }) {
   const { data } = useAppSelector(authSelector);
@@ -37,7 +37,7 @@ export default function CompleteListItem({ item }: { item: ActiveListItem }) {
           </svg>
         </label>
         <p
-          className={`${item.isSelected ? styles.strike : ''} ${
+          className={`${item.isSelected ? styles.strike : ""} ${
             styles.edit__item__text
           }`}
         >

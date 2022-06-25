@@ -1,21 +1,21 @@
-import React from 'react';
-import { MdDateRange, MdKeyboardBackspace } from 'react-icons/md';
-import styles from './list-history.module.scss';
+import React from "react";
+import { MdDateRange, MdKeyboardBackspace } from "react-icons/md";
+import styles from "./list-history.module.scss";
 
 const ListHistory = () => {
   const data = {
     title: "Eero's farewell party",
-    date: 'Mon 24.8.2021',
+    date: "Mon 24.8.2021",
     list: [
-      { name: 'Cookies Chocolate', quantity: 3, category: 'Cookies' },
-      { name: 'Doris Truffle', quantity: 1, category: 'Cookies' },
-      { name: 'Coke', quantity: 4, category: 'Beverages' },
-      { name: 'Sprite', quantity: 8, category: 'Beverages' },
-      { name: '2 x Soft drink 1.5 l', quantity: 1, category: 'Beverages' },
+      { name: "Cookies Chocolate", quantity: 3, category: "Cookies" },
+      { name: "Doris Truffle", quantity: 1, category: "Cookies" },
+      { name: "Coke", quantity: 4, category: "Beverages" },
+      { name: "Sprite", quantity: 8, category: "Beverages" },
+      { name: "2 x Soft drink 1.5 l", quantity: 1, category: "Beverages" },
     ],
   };
 
-  const categories = ['Cookies', 'Beverages'];
+  const categories = ["Cookies", "Beverages"];
 
   return (
     <div className={styles.list_hist}>

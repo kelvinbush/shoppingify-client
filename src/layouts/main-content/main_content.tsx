@@ -1,10 +1,10 @@
-import styles from './main_content.module.scss';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { authSelector } from '../../features/auth';
-import { useCallback, useEffect } from 'react';
-import { getShopItems, shopItemsSelector } from '../../features/content';
-import { getCategories } from '../../util/types';
-import ShopItemList from '../../components/shop_item/shop-item';
+import styles from "./main_content.module.scss";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { authSelector } from "../../features/auth";
+import { useCallback, useEffect } from "react";
+import { getShopItems, shopItemsSelector } from "../../features/content";
+import { getCategories } from "../../util/types";
+import ShopItemList from "../../components/shop_item/shop-item";
 
 export default function MainContent() {
   const { data } = useAppSelector(authSelector);
@@ -34,7 +34,7 @@ export default function MainContent() {
         <input
           className={styles.search}
           type="text"
-          placeholder={'Search items'}
+          placeholder={"Search items"}
         />
       </div>
       <ShopItemList categories={categories} list={shopItemList} />

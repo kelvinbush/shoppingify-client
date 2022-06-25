@@ -1,15 +1,15 @@
 import styles from "./auth.module.scss";
-import {useAppDispatch, useAppSelector} from "../app/hooks";
-import {authSelector, getJwtTokens, UserLogin} from "../features/auth";
-import {useState} from "react";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { authSelector, getJwtTokens, UserLogin } from "../features/auth";
+import { useState } from "react";
 import Spinner from "../components/spinner/spinner";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useAppDispatch();
-  const {pending} = useAppSelector(authSelector);
-  
+  const { pending } = useAppSelector(authSelector);
+
   /* async function route() {
      await router.push("/shop/shop");
    }
@@ -19,7 +19,7 @@ const Login = () => {
        route().then((r) => r);
      }
    });*/
-  
+
   async function submitLogin() {
     const user: UserLogin = {
       email,
@@ -31,7 +31,7 @@ const Login = () => {
       console.log(e);
     }
   }
-  
+
   return (
     <div className={styles.page}>
       <div className={styles.modal}>

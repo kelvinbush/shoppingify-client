@@ -6,8 +6,8 @@ import {
   incrementItem,
   removeItemFromComplete,
   setListStatus,
-} from './actions';
-import { createReducer } from '@reduxjs/toolkit';
+} from "./actions";
+import { createReducer } from "@reduxjs/toolkit";
 
 type CompleteListState = {
   list: CompleteItem[];
@@ -17,7 +17,7 @@ type CompleteListState = {
 
 const initialState: CompleteListState = {
   list: [],
-  name: '',
+  name: "",
   status: false,
 };
 

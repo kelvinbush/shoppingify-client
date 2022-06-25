@@ -1,5 +1,5 @@
-import { ActiveItemResponse, getActiveList } from './actions';
-import { createReducer } from '@reduxjs/toolkit';
+import { ActiveItemResponse, getActiveList } from "./actions";
+import { createReducer } from "@reduxjs/toolkit";
 
 export type ActiveListState = {
   activeList: ActiveItemResponse;
@@ -8,7 +8,7 @@ export type ActiveListState = {
 };
 
 const initialState: ActiveListState = {
-  activeList: { name: '', list: [] },
+  activeList: { name: "", list: [] },
   pending: false,
   error: false,
 };
