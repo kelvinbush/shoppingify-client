@@ -2,7 +2,7 @@ import styles from "./auth.module.scss";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { authSelector, getJwtTokens, UserLogin } from "../features/auth";
 import { useEffect, useState } from "react";
-import Spinner from "../components/spinner/spinner";
+import Spinner from "../components/spinners/spinner";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {

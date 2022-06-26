@@ -4,13 +4,14 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { authSelector } from "../../features/auth";
 import { activeListSelector, getActiveList } from "../../features/added-list";
 import { useCallback, useEffect, useState } from "react";
-import Spinner from "../../components/spinner/spinner";
+import Spinner from "../../components/spinners/spinner";
 import { getCategories } from "../../util/types";
 import { updateCurrentListName } from "../../util/api";
 import {
   DetailState,
   displaySelector,
 } from "../../features/details-display-state";
+import SlideIn from "../../components/spinners/SlideIn";
 
 export default function ItemSection() {
   const { data } = useAppSelector(authSelector);
@@ -34,14 +35,22 @@ export default function ItemSection() {
 
   const categories = getCategories(activeList.list);
 
-  const isPending = <Spinner />;
-  const content = error ? (
-    <p>Something Went Wrong</p>
-  ) : (
-    <>
+  let displaying: JSX.Element;
+
+  if (pending && activeList.list.length == 0) {
+    displaying = <Spinner />;
+  } else if (pending && activeList.list.length > 0) {
+    displaying = (
       <AddListItem activeList={activeList} categories={categories} />
-    </>
-  );
+    );
+  } else {
+    displaying = error ? (
+      <p>Something Went Wrong</p>
+    ) : (
+      <AddListItem activeList={activeList} categories={categories} />
+    );
+  }
+
   return (
     <section className={styles.details}>
       <div>
@@ -55,8 +64,9 @@ export default function ItemSection() {
             <p>Didn&apos;t find what you need?</p>
             <button>Add item</button>
           </div>
+          <div>{pending && activeList.list.length > 0 && <SlideIn />}</div>
         </div>
-        {pending ? isPending : content}
+        {displaying}
       </div>
       {screen === DetailState.edit ? (
         <div className={styles.details__actions}>

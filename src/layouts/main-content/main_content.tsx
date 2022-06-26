@@ -5,7 +5,7 @@ import { useCallback, useEffect } from "react";
 import { getShopItems, shopItemsSelector } from "../../features/content";
 import { getCategories } from "../../util/types";
 import ShopItemList from "../../components/shop_item/shop-item";
-import Rays from "../../components/spinner/Rays";
+import Rays from "../../components/spinners/Rays";
 
 export default function MainContent() {
   const { data } = useAppSelector(authSelector);
