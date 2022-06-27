@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { authSelector, getTokensFromLocal } from "./features/auth";
 import Login from "./pages/auth";
 import MainContent from "./layouts/main-content/main_content";
 import Statistics from "./components/statistics/statistics";
 import ShoppingHistory from "./components/shopping-history/shopping-history";
-import { DetailState, displaySelector } from "./features/details-display-state";
-import Details from "./components/details/details";
-import ItemSection from "./layouts/item-section/item_section";
 import axios from "axios";
 import Shop from "./pages/shop";
 
