@@ -53,19 +53,19 @@ function App() {
 
   return (
     <div className={styles.container}>
-      <Sidebar />
       <Routes>
         <Route
           path={"/"}
           element={isLoggedIn ? <Navigate to="/shop/list" /> : <Login />}
         />
         <Route path={"shop"}>
+          <Sidebar />
           <Route path={"list"} element={<MainContent />} />
           <Route path={"stats"} element={<Statistics />} />
           <Route path={"history"} element={<ShoppingHistory />} />
+          {detail}
         </Route>
       </Routes>
-      {detail}
     </div>
   );
 }
