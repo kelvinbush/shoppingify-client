@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { authSelector, getTokensFromLocal } from "./features/auth";
 import Login from "./pages/auth";
@@ -11,6 +11,7 @@ import Shop from "./pages/shop";
 
 function App() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { data } = useAppSelector(authSelector);
 
@@ -20,6 +21,12 @@ function App() {
       setIsLoggedIn(true);
     }
   }, [data.accessToken.length, dispatch]);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    } else navigate("/shop/list");
+  }, [isLoggedIn]);
 
   axios.interceptors.response.use(
     (response) => {
@@ -38,21 +45,20 @@ function App() {
       return Promise.reject(error);
     }
   );
-
+  console.log(isLoggedIn);
   return (
-    <div>
-      <Routes>
-        <Route
-          path={"/"}
-          element={isLoggedIn ? <Navigate to="/shop/list" /> : <Login />}
-        />
-        <Route path={"shop"} element={<Shop />}>
-          <Route path={"list"} element={<MainContent />} />
-          <Route path={"stats"} element={<Statistics />} />
-          <Route path={"history"} element={<ShoppingHistory />} />
-        </Route>
-      </Routes>
-    </div>
+    <Routes>
+      <Route
+        path={"/"}
+        element={<Navigate to={"shop/list"} replace={false} />}
+      />
+      <Route path={"/login"} element={<Login />} />
+      <Route path={"shop"} element={<Shop isLoggedIn={isLoggedIn} />}>
+        <Route path={"list"} element={<MainContent />} />
+        <Route path={"stats"} element={<Statistics />} />
+        <Route path={"history"} element={<ShoppingHistory />} />
+      </Route>
+    </Routes>
   );
 }
 
