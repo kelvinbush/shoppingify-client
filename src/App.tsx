@@ -53,7 +53,7 @@ function App() {
         element={<Navigate to={"shop/list"} replace={false} />}
       />
       <Route path={"/login"} element={<Login />} />
-      <Route path={"shop"} element={<Shop isLoggedIn={isLoggedIn} />}>
+      <Route path={"shop"} element={<Shop />}>
         <Route path={"list"} element={<MainContent />} />
         <Route path={"stats"} element={<Statistics />} />
         <Route path={"history"} element={<ShoppingHistory />} />
