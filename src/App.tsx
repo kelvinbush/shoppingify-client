@@ -9,16 +9,13 @@ import ShoppingHistory from "./components/shopping-history/shopping-history";
 import { DetailState, displaySelector } from "./features/details-display-state";
 import Details from "./components/details/details";
 import ItemSection from "./layouts/item-section/item_section";
-import styles from "./App.module.scss";
 import axios from "axios";
 import Shop from "./pages/shop";
 
 function App() {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { data } = useAppSelector(authSelector);
-  const { screen } = useAppSelector(displaySelector);
 
   useEffect(() => {
     dispatch(getTokensFromLocal());
@@ -26,12 +23,6 @@ function App() {
       setIsLoggedIn(true);
     }
   }, [data.accessToken.length, dispatch]);
-
-  let detail = <></>;
-
-  if (isLoggedIn) {
-    detail = screen === DetailState.details ? <Details /> : <ItemSection />;
-  }
 
   axios.interceptors.response.use(
     (response) => {
