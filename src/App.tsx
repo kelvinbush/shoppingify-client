@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import Sidebar from "./layouts/sidebar/sidebar";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { authSelector, getTokensFromLocal } from "./features/auth";
 import Login from "./pages/auth";
@@ -12,6 +11,7 @@ import Details from "./components/details/details";
 import ItemSection from "./layouts/item-section/item_section";
 import styles from "./App.module.scss";
 import axios from "axios";
+import Shop from "./pages/shop";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -52,18 +52,16 @@ function App() {
   );
 
   return (
-    <div className={styles.container}>
+    <div>
       <Routes>
         <Route
           path={"/"}
           element={isLoggedIn ? <Navigate to="/shop/list" /> : <Login />}
         />
-        <Route path={"shop"}>
-          <Sidebar />
+        <Route path={"shop"} element={<Shop />}>
           <Route path={"list"} element={<MainContent />} />
           <Route path={"stats"} element={<Statistics />} />
           <Route path={"history"} element={<ShoppingHistory />} />
-          {detail}
         </Route>
       </Routes>
     </div>
