@@ -1,7 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { authSelector, getTokensFromLocal } from "./features/auth";
+import {
+  authSelector,
+  getTokensFromLocal,
+  saveTokensToLocal,
+} from "./features/auth";
 import Login from "./pages/auth";
 import MainContent from "./layouts/main-content/main_content";
 import Statistics from "./components/statistics/statistics";
@@ -20,7 +24,7 @@ function App() {
     if (data.accessToken.length > 1) {
       setIsLoggedIn(true);
     }
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     getTokens();
@@ -28,24 +32,6 @@ function App() {
       navigate("/login", { replace: true });
     } else navigate("/", { replace: true });
   }, [getTokens, isLoggedIn]);
-
-  axios.interceptors.response.use(
-    (response) => {
-      if (response.headers["x-access-token"]) {
-        console.log(response.headers["x-access-token"]);
-        const tokens = {
-          accessToken: response.headers["x-access-token"],
-          refreshToken: data.refreshToken,
-        };
-        const serializedAuth = JSON.stringify(tokens);
-        localStorage.setItem("tokens", serializedAuth);
-      }
-      return response;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
 
   return (
     <Routes>

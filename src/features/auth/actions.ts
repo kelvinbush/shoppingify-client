@@ -12,7 +12,11 @@ export const getJwtTokens = createAsyncThunk(
   }
 );
 
-export const getTokensFromLocal = createAction("auth/local");
+export const getTokensFromLocal = createAction("auth/local/get");
+export const saveTokensToLocal = createAsyncThunk(
+  "auth/local/save",
+  (accessToken: string) => accessToken
+);
 
 export interface UserLogin {
   email: string;

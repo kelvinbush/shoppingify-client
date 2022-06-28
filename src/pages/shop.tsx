@@ -6,12 +6,13 @@ import {
 } from "../features/details-display-state";
 import Details from "../components/details/details";
 import ItemSection from "../layouts/item-section/item_section";
-import { useAppSelector } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { Outlet } from "react-router";
 import styles from "../App.module.scss";
 
 const Shop = () => {
   const { screen } = useAppSelector(displaySelector);
+  const dispatch = useAppDispatch();
   const detail = screen === DetailState.details ? <Details /> : <ItemSection />;
 
   return (

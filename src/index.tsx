@@ -5,6 +5,16 @@ import App from "./App";
 import "./styles.scss";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import axios from "axios";
+
+axios.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 ReactDOM.render(
   <React.StrictMode>
