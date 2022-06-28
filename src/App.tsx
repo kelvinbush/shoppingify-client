@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { authSelector, getTokensFromLocal } from "./features/auth";
@@ -15,18 +15,19 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { data } = useAppSelector(authSelector);
 
-  useEffect(() => {
+  const getTokens = useCallback(() => {
     dispatch(getTokensFromLocal());
     if (data.accessToken.length > 1) {
       setIsLoggedIn(true);
     }
-  }, [data.accessToken.length, dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
+    getTokens();
     if (!isLoggedIn) {
       navigate("/login");
     } else navigate("/shop/list");
-  }, [isLoggedIn]);
+  }, [getTokens, isLoggedIn]);
 
   axios.interceptors.response.use(
     (response) => {
@@ -45,7 +46,7 @@ function App() {
       return Promise.reject(error);
     }
   );
-  console.log(isLoggedIn);
+
   return (
     <Routes>
       <Route

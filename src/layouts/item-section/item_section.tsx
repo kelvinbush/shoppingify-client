@@ -21,8 +21,10 @@ export default function ItemSection() {
   const { screen } = useAppSelector(displaySelector);
 
   const initialFetch = useCallback(() => {
-    dispatch(getActiveList(data));
-  }, [dispatch]);
+    if (data.accessToken.length > 0) {
+      dispatch(getActiveList(data));
+    }
+  }, [dispatch, data]);
 
   useEffect(() => {
     initialFetch();

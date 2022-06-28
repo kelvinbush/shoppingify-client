@@ -13,7 +13,9 @@ export default function MainContent() {
   const dispatch = useAppDispatch();
 
   const initialFetch = useCallback(() => {
-    dispatch(getShopItems(data));
+    if (data.accessToken.length > 0) {
+      dispatch(getShopItems(data));
+    }
   }, [dispatch, data]);
 
   useEffect(() => {
