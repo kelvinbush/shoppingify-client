@@ -25,8 +25,8 @@ function App() {
   useEffect(() => {
     getTokens();
     if (!isLoggedIn) {
-      navigate("/login");
-    } else navigate("/shop/list");
+      navigate("/login", { replace: true });
+    } else navigate("/", { replace: true });
   }, [getTokens, isLoggedIn]);
 
   axios.interceptors.response.use(
@@ -49,16 +49,14 @@ function App() {
 
   return (
     <Routes>
-      <Route
-        path={"/"}
-        element={<Navigate to={"shop/list"} replace={false} />}
-      />
+      <Route path={"/"} element={<Navigate to={"shop/list"} replace />} />
       <Route path={"/login"} element={<Login />} />
       <Route path={"shop"} element={<Shop />}>
         <Route path={"list"} element={<MainContent />} />
         <Route path={"stats"} element={<Statistics />} />
         <Route path={"history"} element={<ShoppingHistory />} />
       </Route>
+      <Route path={"*"} element={<Navigate to={"shop/list"} replace />} />
     </Routes>
   );
 }
