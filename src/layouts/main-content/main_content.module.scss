@@ -26,21 +26,9 @@
 .shop {
   flex-grow: 1;
   padding: 1.6rem 2.3rem;
-
-  &::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: rgba(255, 0, 0, 0.1);
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--color-grey-1);
-    border-radius: 10px;
-  }
+  overflow-y: hidden;
+  min-height: 50rem;
+  max-height: 100vh;
 }
 
 
